@@ -1,5 +1,7 @@
 # TÉMATICKÉ KÓDOVÁNÍ 2026 - RECYKLAČNÍ MĚSTO
 
+https://github.com/Falro6510/tematickekodovani26
+
 Tento program je webová simulační a manažerská hra zaměřená na recyklaci a ekologický rozvoj města. Nabízí následující herní funkce a přesnou ekonomickou logiku:
 
 ## 1. Správa času a pauza
