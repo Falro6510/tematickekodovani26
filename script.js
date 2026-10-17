@@ -1,5 +1,5 @@
 // defining html elements in index.hmtl
-const btn_play = document.querySelector('#btn_play')
+const btn_play_new = document.querySelector('#btn_play_new')
 const start_menu = document.querySelector('#start_menu')
 const game = document.querySelector('#game')
 
@@ -7,8 +7,17 @@ const game = document.querySelector('#game')
 start_menu.style.display = 'block'
 game.style.display = 'none'
 
-btn_play.addEventListener('click', () => {
+btn_play_new.addEventListener('click', () => {
 // show game content, hide start menu
   game.style.display = 'block'
   start_menu.style.display = 'none'
+
+  // define money and profit
+  let money = 20000000
+  // daily profit
+  let profit = 0
+  let day = 1
+  localStorage.setItem('money', money)
+  localStorage.setItem('profit', profit)
+  localStorage.setItem('day', day)
 })
