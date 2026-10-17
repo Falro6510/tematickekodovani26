@@ -1,1 +1,1 @@
-# tematickekodovani26
+# Tématické kódování
