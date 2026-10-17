@@ -9,9 +9,12 @@ const district_original = document.querySelector('#district_original')
 start_menu.style.display = 'block'
 game_div.style.display = 'none'
 district_original.style.display = 'none'
+shop_div.style.display = 'none'
 
 let gameInterval = null;
 let currentDay = 1;
+let btn_stop = document.querySelector('#time')
+
 
 function game(money, profit, day, districtCount, score) {
   console.log('game initialized')
@@ -23,32 +26,26 @@ function game(money, profit, day, districtCount, score) {
   let btn_stop = document.querySelector('#time')
   let btn_shop = document.querySelector('#shop')
 
-  btn_shop.addEventListener('click', () => {
-    game_div.style.display = 'none'
-    shop.style.display = 'block'
 
-
-
-
-
-  })
 
 
 
   btn_stop.addEventListener('click', () => {
-    if (gameInterval) {
-      // Currently running -> Pause it
-      clearInterval(gameInterval);
-      gameInterval = null;
-      console.log('Game paused (time stopped)');
-      btn_stop.innerText = "Spustit Čas";
-    } else {
-      // Currently stopped -> Resume it
-      gameInterval = setInterval(updateDay, 2000);
-      console.log('Game resumed');
-      btn_stop.innerText = "Pozastavit čas";
+
+      if (gameInterval) {
+        // Currently running -> Pause it
+        clearInterval(gameInterval);
+        gameInterval = null;
+        console.log('Game paused (time stopped)');
+        btn_stop.innerText = "Spustit Čas";
+      } else {
+        // Currently stopped -> Resume it
+        gameInterval = setInterval(updateDay, 2000);
+        console.log('Game resumed');
+        btn_stop.innerText = "Pozastavit čas";
+      }
     }
-  });
+  );
   currentDay = parseInt(day);
 
   const money_log = game_div.querySelector('#money_log')
@@ -115,25 +112,75 @@ function game(money, profit, day, districtCount, score) {
               if (paper) {
                   let val = (population * 0.0000231 * dailyNoise()).toFixed(2);
                   paper.innerText = val;
-                  daily_paper += parseFloat(val);
+                daily_paper += parseFloat(val) * parseFloat(people.innerText);
+
+
               }
               if (plastic) {
                   let val = (population * 0.0000225 * dailyNoise()).toFixed(2);
                   plastic.innerText = val;
-                  daily_plastic += parseFloat(val);
+                  daily_plastic += parseFloat(val) * parseFloat(people.innerText);
               }
               if (mix) {
                   let val = (population * 0.00015 * dailyNoise()).toFixed(2);
                   mix.innerText = val;
-                  daily_mix += parseFloat(val);
+                  daily_mix += parseFloat(val) * parseFloat(people.innerText);
               }
               if (bio) {
                   let val = (population * 0.000175 * dailyNoise()).toFixed(2);
                   bio.innerText = val;
-                  daily_bio += parseFloat(val);
+                  daily_bio += parseFloat(val) * parseFloat(people.innerText);
               }
-          }
+            console.log(daily_paper ,"c1"); console.log(daily_plastic , 'c2' ); console.log(daily_bio ,'c3' ); console.log(daily_mix ,'c4') }
       });
+
+
+
+      btn_shop.addEventListener('click', () => {
+        if (gameInterval) {
+          // Currently running -> Pause it
+          clearInterval(gameInterval);
+          gameInterval = null;
+          console.log('Game paused (time stopped)');
+          btn_stop.innerText = "Spustit Čas";
+        } else {
+          // Currently stopped -> Resume it
+          gameInterval = setInterval(updateDay, 2000);
+          console.log('Game resumed');
+          btn_stop.innerText = "Pozastavit čas";
+        }
+        game_div.style.display = 'none'
+        shop_div.style.display = 'block'
+        //shop
+
+
+        const shop_back = document.querySelector('#shop_back')
+        shop_back.addEventListener('click', () => {
+
+          shop_div.style.display = 'none'
+          game_div.style.display = 'block'
+          if (gameInterval) {
+            // Currently running -> Pause it
+            clearInterval(gameInterval);
+            gameInterval = null;
+            console.log('Game paused (time stopped)');
+            btn_stop.innerText = "Spustit Čas";
+          } else {
+            // Currently stopped -> Resume it
+            gameInterval = setInterval(updateDay, 2000);
+            console.log('Game resumed');
+            btn_stop.innerText = "Pozastavit čas";
+          }
+
+
+
+
+        })
+
+
+
+
+      })
 
     daily_paper.toFixed(2)
     daily_plastic.toFixed(2)
@@ -177,7 +224,7 @@ btn_play_new.addEventListener('click', () => {
     let shop_div = document.querySelector('#shop_div')
     shop_div.style.display = 'none'
 
-    let init_money = 20000000
+    let init_money = 20000000 * districtCount
     let init_profit = 0
     let init_day = 1
     let init_score = 0

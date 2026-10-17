@@ -7,42 +7,38 @@
     <link href="style.css" rel="stylesheet">
   </head>
   <body>
-<div id="start_menu">
-  <h1>Tématické kódování 2026 - jmeno hry</h1>
-  <h2>Tomáš Froulík</h2>
-  <p>game description</p>
-<button id="btn_play_new">Hrát hru!</button>
-<button id="btn_play_cont">Pokračovat!</button>
+    <div id="start_menu">
+      <h1>Tématické kódování 2026 - jmeno hry</h1>
+      <h2>Tomáš Froulík</h2>
+      <p>game description</p>
+      <button id="btn_play_new">Hrát hru!</button>
+      <button id="btn_play_cont">Pokračovat!</button>
+    </div>
 
-</div>
-<div id="game_div">
-  <button id="shop">Obchod</button>
-  <button id="time">Pozastavit čas</button>
-  <p>Majetek: <span id="money_log">0</span> Kč</p>
-  <p>Profit: <span id="profit_log">0</span> Kč</p>
-  <p>Skóre: <span id="score_log">0</span></p>
-  <p>Den: <span id="day_log">1</span></p>
-  <div id="district_original">
-      <br>
-      <p>Čtvrť 1</p>
-      <p>Papír: <span id="paper"></span> kg/osoba</p>
-      <p>Plast: <span id="plastic"></span> kg/osoba</p>
-      <p>Bio: <span id="bio"></span> kg/osoba</p>
-      <p>Směs: <span id="mix"></span> kg/osoba</p>
-      <p>Osob: <span id="people"></span></p>
-  </div>
-</div>
+    <div id="game_div">
+      <button id="shop">Obchod</button>
+      <button id="time">Pozastavit čas</button>
+      <p>Majetek: <span id="money_log">0</span> Kč</p>
+      <p>Profit: <span id="profit_log">0</span> Kč</p>
+      <p>Skóre: <span id="score_log">0</span></p>
+      <p>Den: <span id="day_log">1</span></p>
+      <div id="district_original">
+          <br>
+          <p>Čtvrť 1</p>
+          <p>Papír: <span id="paper">0</span> kg/osoba</p>
+          <p>Plast: <span id="plastic">0</span> kg/osoba</p>
+          <p>Bio: <span id="bio">0</span> kg/osoba</p>
+          <p>Směs: <span id="mix">0</span> kg/osoba</p>
+          <p>Osob: <span id="people">0</span></p>
+      </div>
+    </div>
 
+    <div id="shop_div">
+        <button id="shop_back">Zpět</button>
+        <h3>Třídičky</h3>
+        <p>Manuální třídička <button id="buy_man_sor">Koupit</button></p>
+    </div>
 
-<div id="shop_div">
-    <button id="shop_back">Zpět</button>
-<h3>Třídičky</h3>
-<p>Manuální třídička   <span id="buy_man_sor">Koupit</span></p>
-
-</div>
-
-
-
-  <script src='script.js'></script>
+    <script src="script.js"></script>
   </body>
 </html>
