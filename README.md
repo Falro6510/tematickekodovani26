@@ -1,4 +1,5 @@
 # TÉMATICKÉ KÓDOVÁNÍ 2026 - RECYKLAČNÍ MĚSTO
+!!! PRO SPUŠTĚNÍ OTEVŘETE SOUBOR index.html !!!
 
 https://github.com/Falro6510/tematickekodovani26
 
