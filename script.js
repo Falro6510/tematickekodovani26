@@ -13,13 +13,27 @@ district_original.style.display = 'none'
 let gameInterval = null;
 let currentDay = 1;
 
-function game(money, profit, day, districtCount) {
+function game(money, profit, day, districtCount, score) {
   console.log('game initialized')
   console.log('Money:', money)
   console.log('Profit:', profit)
   console.log('Day:', day)
   console.log('Počet čtvrtí:', districtCount)
-  btn_stop = document.querySelector('#time')
+  console.log('Score:' , score)
+  let btn_stop = document.querySelector('#time')
+  let btn_shop = document.querySelector('#shop')
+
+  btn_shop.addEventListener('click', () => {
+    game_div.style.display = 'none'
+    shop.style.display = 'block'
+
+
+
+
+
+  })
+
+
 
   btn_stop.addEventListener('click', () => {
     if (gameInterval) {
@@ -40,6 +54,7 @@ function game(money, profit, day, districtCount) {
   const money_log = game_div.querySelector('#money_log')
   const profit_log = game_div.querySelector('#profit_log')
   const day_log = game_div.querySelector('#day_log')
+  const score_log = game_div.querySelector('#score_log')
 
   money_log.innerText = money
   profit_log.innerText = profit
@@ -100,22 +115,22 @@ function game(money, profit, day, districtCount) {
               if (paper) {
                   let val = (population * 0.0000231 * dailyNoise()).toFixed(2);
                   paper.innerText = val;
-                  daily_paper += parseFloat(val); // Sčítáme hned zde!
+                  daily_paper += parseFloat(val);
               }
               if (plastic) {
                   let val = (population * 0.0000225 * dailyNoise()).toFixed(2);
                   plastic.innerText = val;
-                  daily_plastic += parseFloat(val); // Sčítáme hned zde!
+                  daily_plastic += parseFloat(val);
               }
               if (mix) {
                   let val = (population * 0.00015 * dailyNoise()).toFixed(2);
                   mix.innerText = val;
-                  daily_mix += parseFloat(val); // Sčítáme hned zde!
+                  daily_mix += parseFloat(val);
               }
               if (bio) {
                   let val = (population * 0.000175 * dailyNoise()).toFixed(2);
                   bio.innerText = val;
-                  daily_bio += parseFloat(val); // Sčítáme hned zde!
+                  daily_bio += parseFloat(val);
               }
           }
       });
@@ -124,8 +139,7 @@ function game(money, profit, day, districtCount) {
     daily_plastic.toFixed(2)
     daily_bio.toFixed(2)
     daily_mix.toFixed(2)
-      console.log("Celkem bio za den:", daily_bio);
-    console.log("Celkem plast za den:", daily_plastic);
+
 
   };
 
@@ -160,18 +174,22 @@ btn_play_new.addEventListener('click', () => {
 
     game_div.style.display = 'block'
     start_menu.style.display = 'none'
+    let shop_div = document.querySelector('#shop_div')
+    shop_div.style.display = 'none'
 
     let init_money = 20000000
     let init_profit = 0
     let init_day = 1
+    let init_score = 0
 
     // LocalStorage save
     localStorage.setItem('money', init_money)
     localStorage.setItem('profit', init_profit)
     localStorage.setItem('day', init_day)
     localStorage.setItem('districtCount', districtCount)
+    localStorage.setItem('score', init_score)
 
-    game(init_money, init_profit, init_day, districtCount)
+    game(init_money, init_profit, init_day, districtCount, init_score)
   }
 })
 
@@ -184,9 +202,12 @@ btn_play_cont.addEventListener('click', () => {
   let init_profit = localStorage.getItem('profit');
   let init_day = localStorage.getItem('day');
   let districtCount = parseInt(localStorage.getItem('districtCount')) || 1;
+  let init_score = localStorage.getItem('score')
 
   game_div.style.display = 'block';
   start_menu.style.display = 'none';
+  let shop_div = document.querySelector('#shop_div')
+  shop_div.style.display = 'none'
 
-  game(init_money, init_profit, init_day, districtCount);
+  game(init_money, init_profit, init_day, districtCount , init_score);
 });
