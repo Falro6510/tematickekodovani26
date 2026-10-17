@@ -1,57 +1,47 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Tématické kódování 2026</title>
-    <link rel="stylesheet" href="style.css">
-  </head>
-  <body>
+<body>
+
+    <!-- STÁLE VIDITELNÁ HLAVIČKA / NÁZEV -->
+    <header>
+        <h1>Recyklační Město</h1>
+    </header>
+
+    <!-- 1. START MENU -->
     <div id="start_menu">
-      <h1>Tématické kódování 2026 - jmeno hry</h1>
-      <h2>Tomáš Froulík</h2>
-      <p>game description</p>
-      <button id="btn_play_new">Hrát hru!</button>
-      <button id="btn_play_cont">Pokračovat!</button>
+        <h2>Startovní menu</h2>
+        <button id="btn_play_new">Nová hra</button>
+        <button id="btn_play_cont">Pokračovat ve hře</button>
     </div>
 
-    <div id="game_div">
-        <button id="btn_save">Uložit hru</button>
-
-      <button id="shop">Obchod</button>
-      <button id="time">Pozastavit čas</button>
-      <p>Majetek: <span id="money_log">0</span> Kč</p>
-      <p>Profit: <span id="profit_log">0</span> Kč</p>
-      <p>Skóre: <span id="score_log">0</span></p>
-      <p>Level: <span id="level_log">1</span></p>
-      <p>Den: <span id="day_log">1</span></p>
-      <div id="district_original">
-          <br>
-          <p>Čtvrť 1</p>
-          <p>Papír: <span id="paper">0</span> kg/osoba</p>
-          <p>Plast: <span id="plastic">0</span> kg/osoba</p>
-          <p>Bio: <span id="bio">0</span> kg/osoba</p>
-          <p>Směs: <span id="mix">0</span> kg/osoba</p>
-          <p>Osob: <span id="people">0</span></p>
-      </div>
-      <div id="trid_div"></div>
-      <div id="zavody_div"></div>
+    <!-- 2. HERNÍ OKNO -->
+    <div id="game_div" style="display: none;">
+        <h2>Herní plocha</h2>
+        <p>Den: <span id="day_log">1</span> | Peníze: <span id="money_log">0</span> Kč</p>
+        <!-- Tvoje čtvrti a tlačítka -->
+        <button id="btn_save">Uložit a odejít do menu</button>
+        <button id="shop">Obchod</button>
     </div>
 
-    <div id="shop_div">
-            <button id="shop_back">Zpět</button>
-            <h3>Třídičky</h3>
-            <p>Manuální třídička - Cena: 100 000 Kč, Provoz denně 500 Kč, roztřídí 600 kg odpadu <button id="buy_man_sor">Koupit</button></p>
-            <p>Automatická třídička - Cena: 250 000 Kč, Provoz denně 1 200 Kč, roztřídí 1 800 kg odpadu <button id="buy_aut_sor">Koupit</button></p>
+    <!-- 3. OBCHOD -->
+    <div id="shop_div" style="display: none;">
+        <h2>Obchod</h2>
+        <!-- Položky v obchodě -->
+        <button id="shop_back">Zpět do hry</button>
+    </div>
 
-            <h3>Závody</h3>
-            <p>Malý závod na papír - Cena: 80 000 Kč, Provoz denně 400 Kč, zpracuje 400 kg odpadu <button id="buy_sma_pap">Koupit</button></p>
-            <p>Velký závod na papír - Cena: 200 000 Kč, Provoz denně 900 Kč, zpracuje 1 200 kg odpadu <button id="buy_big_pap">Koupit</button></p>
-            <p>Malý závod na plast - Cena: 100 000 Kč, Provoz denně 500 Kč, zpracuje 400 kg odpadu <button id="buy_sma_pla">Koupit</button></p>
-            <p>Velký závod na plast - Cena: 250 000 Kč, Provoz denně 1 100 Kč, zpracuje 1 200 kg odpadu <button id="buy_big_pla">Koupit</button></p>
-            <p>Malý závod na bioodpad - Cena: 60 000 Kč, Provoz denně 300 Kč, zpracuje 500 kg odpadu <button id="buy_sma_bio">Koupit</button></p>
-            <p>Velký závod na bioodpad - Cena: 150 000 Kč, Provoz denně 700 Kč, zpracuje 1 500 kg odpadu <button id="buy_big_bio">Koupit</button></p>
+    <!-- TRVALE VIDITELNÁ GALERIE (zobrazí se na každé obrazovce) -->
+    <div class="art-gallery">
+        <h3>Galerie ekologického umění a technologií (CC)</h3>
+        <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+            <div>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/UFF_clothing_collection_bins_in_Vallila%2C_Helsinki%2C_Finland%2C_2022.jpg" alt="Tříděný odpad" width="200">
+                <p><strong>Sběrné nádoby</strong> (CC BY-SA 4.0)</p>
+            </div>
+            <div>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/e/e5/Plastic_waste_sorting_for_recycling.png" alt="Třídění plastů" width="200">
+                <p><strong>Třídicí linka</strong> (CC BY 4.0)</p>
+            </div>
         </div>
+    </div>
+
     <script src="script.js"></script>
-  </body>
-</html>
+</body>

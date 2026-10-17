@@ -98,23 +98,19 @@ function game(money, profit, day, districtCount, score) {
       capacity: item.capacity,
       material: item.material,
       type: item.type,
-      name: item.name
+      name: item.name,
+      active: item.active !== undefined ? item.active : true
     }));
     localStorage.setItem('purchasedItems', JSON.stringify(serializableItems));
   };
 
-  // --- ULOŽENÍ A NÁVRAT DO START MENU ---
   if (btn_save) {
     btn_save.onclick = () => {
       saveGame();
-
-      // Zastavení herní smyčky
       if (gameInterval) {
         clearInterval(gameInterval);
         gameInterval = null;
       }
-
-      // Přepnutí zobrazení oken zpět do menu
       game_div.style.display = 'none';
       if (shop_div) shop_div.style.display = 'none';
       start_menu.style.display = 'block';
@@ -122,7 +118,6 @@ function game(money, profit, day, districtCount, score) {
       alert('Hra byla úspěšně uložena a byl jsi vrácen do menu.');
     };
   }
-  // -------------------------------------
 
   const updateDay = () => {
     currentDay++;
@@ -178,12 +173,16 @@ function game(money, profit, day, districtCount, score) {
     let bioCapacity = 0;
     let totalDailyCost = 0;
 
+    // Počítáme kapacity a náklady POUZE u zapnutých zařízení
     purchasedItems.forEach(item => {
-      totalDailyCost += item.cost;
-      if (item.type === 'sorter') sorterCapacity += item.capacity;
-      if (item.material === 'paper') paperCapacity += item.capacity;
-      if (item.material === 'plastic') plasticCapacity += item.capacity;
-      if (item.material === 'bio') bioCapacity += item.capacity;
+      let isActive = item.active !== undefined ? item.active : true;
+      if (isActive) {
+        totalDailyCost += item.cost;
+        if (item.type === 'sorter') sorterCapacity += item.capacity;
+        if (item.material === 'paper') paperCapacity += item.capacity;
+        if (item.material === 'plastic') plasticCapacity += item.capacity;
+        if (item.material === 'bio') bioCapacity += item.capacity;
+      }
     });
 
     let totalSortableWaste = total_paper + total_plastic + total_bio;
@@ -201,18 +200,31 @@ function game(money, profit, day, districtCount, score) {
 
     total_mix += (availablePaper - processedPaper) + (availablePlastic - processedPlastic) + (availableBio - processedBio);
 
+    // Aktualizace vytížení a zobrazení stavu
     purchasedItems.forEach(item => {
       if (item.elementRef) {
-        let usagePercentage = 0;
-        if (item.type === 'sorter') {
-          usagePercentage = sorterCapacity > 0 ? Math.min(100, (totalSortableWaste / sorterCapacity) * 100) : 0;
-        } else {
-          let matAmount = item.material === 'paper' ? total_paper : (item.material === 'plastic' ? total_plastic : total_bio);
-          let matCap = item.material === 'paper' ? paperCapacity : (item.material === 'plastic' ? plasticCapacity : bioCapacity);
-          usagePercentage = matCap > 0 ? Math.min(100, (matAmount / matCap) * 100) : 0;
+        let isActive = item.active !== undefined ? item.active : true;
+        let usageSpan = item.elementRef.querySelector('.item-usage');
+        let statusSpan = item.elementRef.querySelector('.item-status');
+
+        if (statusSpan) {
+          statusSpan.innerText = isActive ? 'Zapnuto' : 'Vypnuto';
+          statusSpan.style.color = isActive ? '#34d399' : '#f87171';
         }
-        const usageSpan = item.elementRef.querySelector('.item-usage');
-        if (usageSpan) usageSpan.innerText = usagePercentage.toFixed(1);
+
+        if (!isActive) {
+          if (usageSpan) usageSpan.innerText = '0';
+        } else {
+          let usagePercentage = 0;
+          if (item.type === 'sorter') {
+            usagePercentage = sorterCapacity > 0 ? Math.min(100, (totalSortableWaste / sorterCapacity) * 100) : 0;
+          } else {
+            let matAmount = item.material === 'paper' ? total_paper : (item.material === 'plastic' ? total_plastic : total_bio);
+            let matCap = item.material === 'paper' ? paperCapacity : (item.material === 'plastic' ? plasticCapacity : bioCapacity);
+            usagePercentage = matCap > 0 ? Math.min(100, (matAmount / matCap) * 100) : 0;
+          }
+          if (usageSpan) usageSpan.innerText = usagePercentage.toFixed(1);
+        }
       }
     });
 
@@ -326,12 +338,28 @@ buyList.forEach((id) => {
           window.updateCurrentMoneyDisplay(currentMoney);
         }
 
-        let newItem = { ...itemTemplate };
+        let newItem = { ...itemTemplate, active: true };
         let targetDiv = newItem.type === 'sorter' ? document.querySelector('#trid_div') : document.querySelector('#zavody_div');
 
         if (targetDiv) {
           let newElement = document.createElement('p');
-          newElement.innerHTML = `${newItem.name} (Vytížení: <span class="item-usage">0</span>%)`;
+          newElement.innerHTML = `${newItem.name} [<span class="item-status" style="color: #34d399; font-weight: bold;">Zapnuto</span>] (Vytížení: <span class="item-usage">0</span>%) <button class="toggle-btn">Vypnout</button>`;
+
+          let toggleBtn = newElement.querySelector('.toggle-btn');
+          toggleBtn.onclick = () => {
+            newItem.active = !newItem.active;
+            toggleBtn.innerText = newItem.active ? 'Vypnout' : 'Zapnout';
+            let statusSpan = newElement.querySelector('.item-status');
+            statusSpan.innerText = newItem.active ? 'Zapnuto' : 'Vypnuto';
+            statusSpan.style.color = newItem.active ? '#34d399' : '#f87171';
+
+            // Okamžité uložení stavu
+            let serializableItems = purchasedItems.map(item => ({
+              id: item.id, price: item.price, cost: item.cost, capacity: item.capacity, material: item.material, type: item.type, name: item.name, active: item.active
+            }));
+            localStorage.setItem('purchasedItems', JSON.stringify(serializableItems));
+          };
+
           targetDiv.appendChild(newElement);
           newItem.elementRef = newElement;
         }
@@ -339,13 +367,7 @@ buyList.forEach((id) => {
         purchasedItems.push(newItem);
 
         let serializableItems = purchasedItems.map(item => ({
-          id: item.id,
-          price: item.price,
-          cost: item.cost,
-          capacity: item.capacity,
-          material: item.material,
-          type: item.type,
-          name: item.name
+          id: item.id, price: item.price, cost: item.cost, capacity: item.capacity, material: item.material, type: item.type, name: item.name, active: item.active
         }));
         localStorage.setItem('purchasedItems', JSON.stringify(serializableItems));
 
@@ -367,15 +389,37 @@ function restorePurchasedItems() {
   let savedItems = localStorage.getItem('purchasedItems');
   if (savedItems) {
     let parsed = JSON.parse(savedItems);
-    parsed.forEach(item => {
-      let targetDiv = item.type === 'sorter' ? trid_div : zavody_div;
+    parsed.forEach(savedItem => {
+      let itemTemplate = shopItems[savedItem.id] || savedItem;
+      let newItem = { ...itemTemplate, active: savedItem.active !== undefined ? savedItem.active : true };
+      let targetDiv = newItem.type === 'sorter' ? trid_div : zavody_div;
+
       if (targetDiv) {
         let newElement = document.createElement('p');
-        newElement.innerHTML = `${item.name} (Vytížení: <span class="item-usage">0</span>%)`;
+        let statusText = newItem.active ? 'Zapnuto' : 'Vypnuto';
+        let statusColor = newItem.active ? '#34d399' : '#f87171';
+
+        newElement.innerHTML = `${newItem.name} [<span class="item-status" style="color: ${statusColor}; font-weight: bold;">${statusText}</span>] (Vytížení: <span class="item-usage">0</span>%) <button class="toggle-btn">${newItem.active ? 'Vypnout' : 'Zapnout'}</button>`;
+
+        let toggleBtn = newElement.querySelector('.toggle-btn');
+        toggleBtn.onclick = () => {
+          newItem.active = !newItem.active;
+          toggleBtn.innerText = newItem.active ? 'Vypnout' : 'Zapnout';
+          let statusSpan = newElement.querySelector('.item-status');
+          statusSpan.innerText = newItem.active ? 'Zapnuto' : 'Vypnuto';
+          statusSpan.style.color = newItem.active ? '#34d399' : '#f87171';
+
+          let serializableItems = purchasedItems.map(item => ({
+            id: item.id, price: item.price, cost: item.cost, capacity: item.capacity, material: item.material, type: item.type, name: item.name, active: item.active
+          }));
+          localStorage.setItem('purchasedItems', JSON.stringify(serializableItems));
+        };
+
         targetDiv.appendChild(newElement);
-        item.elementRef = newElement;
+        newItem.elementRef = newElement;
       }
-      purchasedItems.push(item);
+
+      purchasedItems.push(newItem);
     });
   }
 }
