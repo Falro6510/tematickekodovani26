@@ -22,7 +22,7 @@ V jednotlivých čtvrtích přirozeně přibývají obyvatelé (+10 až +40 osob
 
 ## 4. Logika skóre a levelování
 - **Skóre:** Hráč získává +1.5 bodu za každý kg úspěšně recyklovaného odpadu a naopak dostává penalizaci -0.5 bodu za každý kg odpadu, který skončí jako nerecyklovaná směs.
-- **Levelování:** Úroveň se počítá progresivně ze skóre (hranice se zvyšují v násobcích 10 000 bodů). Při postupu na nový level systém automaticky vytvoří a přidá **+2 nové čtvrti**.
+- **Levelování:** Úroveň se počítá progresivně ze skóre (hranice se zvyšují v násobcích 10 000 bodů + předchozí skóre). Při postupu na nový level systém automaticky vytvoří a přidá **+2 nové čtvrti**.
 
 ## 5. Obchod a zapínání/vypínání zařízení
 - **Třídičky:** Manuální (cena 100 000 Kč, provoz 500 Kč/den, kapacita 600 kg) a Automatická (cena 250 000 Kč, provoz 1 200 Kč/den, kapacita 1 800 kg).
