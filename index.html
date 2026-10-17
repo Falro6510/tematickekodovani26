@@ -1,47 +1,108 @@
-<body>
-
-    <!-- STÁLE VIDITELNÁ HLAVIČKA / NÁZEV -->
-    <header>
-        <h1>Recyklační Město</h1>
-    </header>
-
-    <!-- 1. START MENU -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Tématické kódování 2026</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
     <div id="start_menu">
-        <h2>Startovní menu</h2>
-        <button id="btn_play_new">Nová hra</button>
-        <button id="btn_play_cont">Pokračovat ve hře</button>
-    </div>
 
-    <!-- 2. HERNÍ OKNO -->
-    <div id="game_div" style="display: none;">
-        <h2>Herní plocha</h2>
-        <p>Den: <span id="day_log">1</span> | Peníze: <span id="money_log">0</span> Kč</p>
-        <!-- Tvoje čtvrti a tlačítka -->
-        <button id="btn_save">Uložit a odejít do menu</button>
-        <button id="shop">Obchod</button>
-    </div>
+      <div class="docs-section">
+              <h2>TÉMATICKÉ KÓDOVÁNÍ 2026 - RECYKLAČNÍ MĚSTO</h2>
+              <p><strong>Autor:</strong> Tomáš Froulík</p>
 
-    <!-- 3. OBCHOD -->
-    <div id="shop_div" style="display: none;">
-        <h2>Obchod</h2>
-        <!-- Položky v obchodě -->
-        <button id="shop_back">Zpět do hry</button>
-    </div>
+              <h3>PODROBNÝ POPIS FUNKCÍ PROGRAMU:</h3>
+              <p>Tento program je webová simulační a manažerská hra zaměřená na recyklaci a ekologický rozvoj města. Nabízí následující herní funkce:</p>
 
-    <!-- TRVALE VIDITELNÁ GALERIE (zobrazí se na každé obrazovce) -->
-    <div class="art-gallery">
-        <h3>Galerie ekologického umění a technologií (CC)</h3>
-        <div style="display: flex; gap: 15px; flex-wrap: wrap;">
-            <div>
-                <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/UFF_clothing_collection_bins_in_Vallila%2C_Helsinki%2C_Finland%2C_2022.jpg" alt="Tříděný odpad" width="200">
-                <p><strong>Sběrné nádoby</strong> (CC BY-SA 4.0)</p>
+              <ol>
+                <li>
+                  <strong>SPRÁVA ČASU A PAUZA:</strong><br>
+                  Čas běží po dnech (1 den = 4 sekundy). Hráč může čas kdykoliv pozastavit nebo spustit tlačítkem pro klidné promyšlení tahů.
+                </li>
+                <li>
+                  <strong>RŮST POPULACE A ODPAD:</strong><br>
+                  V čtvrtích přirozeně přibývají obyvatelé (+10 až +40 denně), kteří generují papír, plast, bioodpad a směsný odpad.
+                </li>
+                <li>
+                  <strong>LEVELOVÁNÍ A ROZŠIŘOVÁNÍ MĚSTA:</strong><br>
+                  Za recyklaci získává hráč skóre. Při postupu na vyšší levely systém automaticky zakládá a přidává +2 nové čtvrti.
+                </li>
+                <li>
+                  <strong>OBCHOD SE ZAŘÍZENÍMI:</strong><br>
+                  Možnost nákupu třídiček (manuální, automatické) a zpracovatelských závodů (papír, plast, bioodpad) pro zefektivnění recyklace.
+                </li>
+                <li>
+                  <strong>ZAPÍNÁNÍ A VYPÍNÁNÍ ZAŘÍZENÍ:</strong><br>
+                  U každého zakoupeného zařízení může hráč přepínat stav (zapnuto/vypnuto). Vypnutá zařízení netáhnou peníze na provoz, ale netřídí ani nezpracovávají odpad.
+                </li>
+                <li>
+                  <strong>UKLÁDÁNÍ HRY (LOCALSTORAGE):</strong><br>
+                  Průběžné ukládání stavu hry do paměti prohlížeče. Tlačítko pro uložení umožňuje bezpečný návrat do startovního menu.
+                </li>
+                <li>
+                  <strong>GALERIE EKOLOGICKÉHO UMĚNÍ:</strong><br>
+                  Integrovaná galerie s fotografiemi z Wikimedia Commons pod licencemi Creative Commons včetně odborných popisů.
+                </li>
+              </ol>
+
+              <h3>STATISTIKY PROJEKTU:</h3>
+              <ul>
+                <li><strong>Celkový počet řádků:</strong> 497</li>
+                <li><strong>Celkový počet slov:</strong> Cca 1 650</li>
+                <li><strong>Celkový počet znaků:</strong> Cca 27 400</li>
+              </ul>
             </div>
-            <div>
-                <img src="https://upload.wikimedia.org/wikipedia/commons/e/e5/Plastic_waste_sorting_for_recycling.png" alt="Třídění plastů" width="200">
-                <p><strong>Třídicí linka</strong> (CC BY 4.0)</p>
-            </div>
+      <button id="btn_play_new">Hrát hru!</button>
+      <button id="btn_play_cont">Pokračovat!</button>
+      <div class="art-gallery">
+          <h3>Galerie ekologického umění (CC)</h3>
+          <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/UFF_clothing_collection_bins_in_Vallila%2C_Helsinki%2C_Finland%2C_2022.jpg" alt="Tříděný odpad v Helsinkách" width="300">
+          <p><strong>Název díla:</strong> UFF clothing collection bins in Vallila, Helsinki</p>
+          <p><strong>Autor:</strong> User:Avaris / Wikimedia Commons</p>
+          <p><strong>Licence:</strong> <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.en" target="_blank">Creative Commons Attribution-Share Alike 4.0 International</a></p>
+          <p><em>O umění:</em> Tato dokumentární fotografie zachycuje reálné sběrné kontejnery ve finském Helsinkách. Dílo symbolizuje utilitární městskou infrastrukturu, ekologickou zodpovědnost a každodenní logistiku udržitelného hospodaření s materiály ve veřejném prostoru.</p>
+      </div>
+    </div>
+
+    <div id="game_div">
+        <button id="btn_save">Uložit hru</button>
+
+      <button id="shop">Obchod</button>
+      <button id="time">Pozastavit čas</button>
+      <p>Majetek: <span id="money_log">0</span> Kč</p>
+      <p>Profit: <span id="profit_log">0</span> Kč</p>
+      <p>Skóre: <span id="score_log">0</span></p>
+      <p>Level: <span id="level_log">1</span></p>
+      <p>Den: <span id="day_log">1</span></p>
+      <div id="district_original">
+          <br>
+          <p>Čtvrť 1</p>
+          <p>Papír: <span id="paper">0</span> kg/osoba</p>
+          <p>Plast: <span id="plastic">0</span> kg/osoba</p>
+          <p>Bio: <span id="bio">0</span> kg/osoba</p>
+          <p>Směs: <span id="mix">0</span> kg/osoba</p>
+          <p>Osob: <span id="people">0</span></p>
+      </div>
+      <div id="trid_div"></div>
+      <div id="zavody_div"></div>
+    </div>
+
+    <div id="shop_div">
+            <button id="shop_back">Zpět</button>
+            <h3>Třídičky</h3>
+            <p>Manuální třídička - Cena: 100 000 Kč, Provoz denně 500 Kč, roztřídí 600 kg odpadu <button id="buy_man_sor">Koupit</button></p>
+            <p>Automatická třídička - Cena: 250 000 Kč, Provoz denně 1 200 Kč, roztřídí 1 800 kg odpadu <button id="buy_aut_sor">Koupit</button></p>
+
+            <h3>Závody</h3>
+            <p>Malý závod na papír - Cena: 80 000 Kč, Provoz denně 400 Kč, zpracuje 400 kg odpadu <button id="buy_sma_pap">Koupit</button></p>
+            <p>Velký závod na papír - Cena: 200 000 Kč, Provoz denně 900 Kč, zpracuje 1 200 kg odpadu <button id="buy_big_pap">Koupit</button></p>
+            <p>Malý závod na plast - Cena: 100 000 Kč, Provoz denně 500 Kč, zpracuje 400 kg odpadu <button id="buy_sma_pla">Koupit</button></p>
+            <p>Velký závod na plast - Cena: 250 000 Kč, Provoz denně 1 100 Kč, zpracuje 1 200 kg odpadu <button id="buy_big_pla">Koupit</button></p>
+            <p>Malý závod na bioodpad - Cena: 60 000 Kč, Provoz denně 300 Kč, zpracuje 500 kg odpadu <button id="buy_sma_bio">Koupit</button></p>
+            <p>Velký závod na bioodpad - Cena: 150 000 Kč, Provoz denně 700 Kč, zpracuje 1 500 kg odpadu <button id="buy_big_bio">Koupit</button></p>
         </div>
-    </div>
-
     <script src="script.js"></script>
-</body>
+  </body>
+</html>
