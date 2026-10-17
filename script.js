@@ -1,3 +1,15 @@
+const retro = document.querySelector('#retro');
+const link = document.querySelector('.link');
+
+retro.addEventListener('click', () => {
+  if (retro.innerText === 'RETRO') {
+    retro.innerText = 'MODERNÍ';
+    link.href = 'retro.css';
+  } else {
+    retro.innerText = 'RETRO';
+    link.href = 'style.css';
+  }
+});
 // DOM elements
 const btn_play_new = document.querySelector('#btn_play_new');
 const btn_play_cont = document.querySelector('#btn_play_cont');

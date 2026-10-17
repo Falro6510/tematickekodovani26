@@ -1,0 +1,83 @@
+/* Klasický starý styl – žádné AI efekty, zaoblené rohy ani stíny */
+body {
+  background-color: #c0c0c0; /* Šedé pozadí starých systémů */
+  color: #000000;
+  font-family: Arial, Tahoma, sans-serif;
+  margin: 10px;
+  padding: 10px;
+}
+
+/* Hlavní rámy/okna jako stará okna ve Windows */
+#start_menu, #game_div, #shop_div {
+  background-color: #ffffff;
+  border: 2px solid #000000;
+  padding: 15px;
+  max-width: 800px;
+  margin: 0 auto 15px auto;
+}
+
+/* Nadpisy */
+h1, h2, h3 {
+  font-family: Arial, sans-serif;
+  color: #000080; /* Klasická tmavě modrá */
+  border-bottom: 1px solid #000000;
+  padding-bottom: 3px;
+  margin-top: 10px;
+  font-size: 1.2rem;
+}
+
+/* Tlačítka s klasickým 3D rámečkem */
+button {
+  background-color: #e0e0e0;
+  border: 2px outset #ffffff;
+  border-right-color: #808080;
+  border-bottom-color: #808080;
+  padding: 4px 10px;
+  font-family: Arial, sans-serif;
+  font-weight: bold;
+  cursor: pointer;
+  margin: 3px;
+  color: #000;
+}
+
+button:active {
+  border-style: inset;
+  background-color: #d0d0d0;
+}
+
+/* Čtvrti jako obyčejné šedivé bloky */
+.dynamic-district {
+  background-color: #f0f0f0;
+  border: 1px solid #808080;
+  padding: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.dynamic-district p {
+  margin-bottom: 3px;
+}
+
+/* Položky v obchodě */
+#shop_div p {
+  background: #f9f9f9;
+  border: 1px solid #cccccc;
+  padding: 6px;
+  margin-bottom: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Sekce pro CC umění / galerii */
+.art-gallery {
+  margin-top: 20px;
+  border-top: 1px dashed #000000;
+  padding-top: 10px;
+  font-size: 0.9rem;
+}
+
+.art-gallery img {
+  border: 1px solid #000000;
+  margin-bottom: 5px;
+}
